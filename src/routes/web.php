@@ -17,6 +17,8 @@ Route::get('/', function () {
 
 Route::get('tests/test', 'TestController@index');
 
-Auth::routes();
+Route::resource('WeightRegistrations', 'WeightRegistrationController');
+
+//Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
