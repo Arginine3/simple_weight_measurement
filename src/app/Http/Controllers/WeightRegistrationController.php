@@ -14,6 +14,7 @@ class WeightRegistrationController extends Controller
     public function index()
     {
         //
+        return view('WeightRegistrations.index');
     }
 
     /**
@@ -24,6 +25,7 @@ class WeightRegistrationController extends Controller
     public function create()
     {
         //
+        return view('WeightRegistrations.create');
     }
 
     /**

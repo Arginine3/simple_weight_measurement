@@ -17,8 +17,16 @@ Route::get('/', function () {
 
 Route::get('tests/test', 'TestController@index');
 
-Route::resource('WeightRegistrations', 'WeightRegistrationController');
 
-//Auth::routes();
+//認証をはさみたいときは、['prefix' => 'WeightRegistrations', 'middleware' => 'auth']
+Route::group(['prefix' => 'WeightRegistrations'],function(){
+    Route::get('index', 'WeightRegistrationController@index')->name('WeightRegistrations.index');
+    Route::get('create', 'WeightRegistrationController@create')->name('WeightRegistrations.create');
+});
+
+//REST(今回は使わない)
+//Route::resource('WeightRegistrations', 'WeightRegistrationController');
+
+Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
