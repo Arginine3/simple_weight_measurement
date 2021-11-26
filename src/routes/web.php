@@ -22,6 +22,7 @@ Route::get('tests/test', 'TestController@index');
 Route::group(['prefix' => 'WeightRegistrations'],function(){
     Route::get('index', 'WeightRegistrationController@index')->name('WeightRegistrations.index');
     Route::get('create', 'WeightRegistrationController@create')->name('WeightRegistrations.create');
+    Route::post('store', 'WeightRegistrationController@store')->name('WeightRegistrations.store');
 });
 
 //REST(今回は使わない)

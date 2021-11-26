@@ -37,6 +37,14 @@ class WeightRegistrationController extends Controller
     public function store(Request $request)
     {
         //
+        $your_name = $request->input('your_name');
+        $age = $request->input('age');
+        $gender = $request->input('gender');
+        $weight = $request->input('weight');
+        $height = $request->input('height');
+        $measurement_date = $request->input('measurement_date');
+
+        dd($your_name, $age, $gender, $weight, $height, $measurement_date);
     }
 
     /**
