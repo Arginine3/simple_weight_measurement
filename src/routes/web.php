@@ -19,15 +19,14 @@ Route::get('/', function () {
 Route::get('tests/test', 'TestController@index');
 
 
-//認証をはさみたいときは、['prefix' => 'WeightRegistrations', 'middleware' => 'auth']
-Route::group(['prefix' => 'WeightRegistrations'],function(){
-    Route::get('index', 'WeightRegistrationController@index')->name('WeightRegistrations.index');
-    Route::get('create', 'WeightRegistrationController@create')->name('WeightRegistrations.create');
-    Route::post('store', 'WeightRegistrationController@store')->name('WeightRegistrations.store');
-});
+Route::resource('WeightRegistrations', 'WeightRegistrationController');
 
-//REST(今回は使わない)
-//Route::resource('WeightRegistrations', 'WeightRegistrationController');
+//認証をはさみたいときは、['prefix' => 'WeightRegistrations', 'middleware' => 'auth']
+// Route::group(['prefix' => 'WeightRegistrations'],function(){
+//     Route::get('index', 'WeightRegistrationController@index')->name('WeightRegistrations.index');
+//     Route::get('create', 'WeightRegistrationController@create')->name('WeightRegistrations.create');
+//     Route::post('store', 'WeightRegistrationController@store')->name('WeightRegistrations.store');
+// });
 
 Auth::routes();
 
