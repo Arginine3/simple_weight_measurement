@@ -28,6 +28,34 @@ class WeightRegistrationController extends Controller
         return view('WeightRegistrations.create');
     }
 
+    public function confirm(Request $request){
+		//セッションから値を取り出す
+		//$input = $request->session()->get("form_input");
+
+		//セッションに値が無い時はフォームに戻る
+		// if(!$input){
+		// 	return redirect()->action("WeightRegistrations@index");
+		// }
+		return view("WeightRegistrations.confirm");
+	}
+
+    // public function send(Request $request){
+	// 	//セッションから値を取り出す
+	// 	$input = $request->session()->get("form_input");
+
+	// 	//セッションに値が無い時はフォームに戻る
+	// 	if(!$input){
+	// 		return redirect()->action("SampleFormController@show");
+	// 	}
+
+	// 	//ここでメールを送信するなどを行う
+
+	// 	//セッションを空にする
+	// 	$request->session()->forget("form_input");
+
+	// 	return redirect()->action("WeightRegistrations@index");
+	// }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -36,15 +64,16 @@ class WeightRegistrationController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        $your_name = $request->input('your_name');
-        $age = $request->input('age');
-        $gender = $request->input('gender');
-        $weight = $request->input('weight');
-        $height = $request->input('height');
+
+        $your_name = $request->input('clint_name');
+        $age = $request->input('birth_date');
+        $gender = $request->input('sex');
+        $weight = $request->input('height');
+        $height = $request->input('weight');
         $measurement_date = $request->input('measurement_date');
 
         dd($your_name, $age, $gender, $weight, $height, $measurement_date);
+
     }
 
     /**

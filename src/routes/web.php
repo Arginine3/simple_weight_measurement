@@ -18,15 +18,21 @@ Route::get('/', function () {
 
 Route::get('tests/test', 'TestController@index');
 
+//最終的にこの書き方にしたい(resource)
+// Route::resource('WeightRegistrations','WeightRegistrationController');
 
-Route::resource('WeightRegistrations', 'WeightRegistrationController');
-
-//認証をはさみたいときは、['prefix' => 'WeightRegistrations', 'middleware' => 'auth']
 // Route::group(['prefix' => 'WeightRegistrations'],function(){
-//     Route::get('index', 'WeightRegistrationController@index')->name('WeightRegistrations.index');
-//     Route::get('create', 'WeightRegistrationController@create')->name('WeightRegistrations.create');
-//     Route::post('store', 'WeightRegistrationController@store')->name('WeightRegistrations.store');
+//     Route::get('confirm', 'WeightRegistrationController@confirm')->name('WeightRegistrations.confirm');
+//     Route::post('send', 'WeightRegistrationController@send')->name('WeightRegistrations.send');
 // });
+
+// 認証をはさみたいときは、['prefix' => 'WeightRegistrations', 'middleware' => 'auth']
+Route::group(['prefix' => 'WeightRegistrations'],function(){
+    Route::get('index', 'WeightRegistrationController@index')->name('WeightRegistrations.index');
+    Route::get('create', 'WeightRegistrationController@create')->name('WeightRegistrations.create');
+    Route::get('confirm', 'WeightRegistrationController@confirm')->name('WeightRegistrations.confirm');
+    Route::post('store', 'WeightRegistrationController@store')->name('WeightRegistrations.store');
+});
 
 Auth::routes();
 
