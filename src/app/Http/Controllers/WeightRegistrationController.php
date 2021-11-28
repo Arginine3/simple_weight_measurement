@@ -72,7 +72,9 @@ class WeightRegistrationController extends Controller
         $height = $request->input('weight');
         $measurement_date = $request->input('measurement_date');
 
-        dd($your_name, $age, $gender, $weight, $height, $measurement_date);
+        //dd($your_name, $age, $gender, $weight, $height, $measurement_date);
+
+        //データを保持して確認画面(confirm.php)に画面遷移させる
 
     }
 
@@ -84,7 +86,9 @@ class WeightRegistrationController extends Controller
      */
     public function show($id)
     {
-        //
+        //$Individual = Model名::find($id)
+
+        return view('WeightRegistrations.show', compact('Individual'));
     }
 
     /**
@@ -95,7 +99,9 @@ class WeightRegistrationController extends Controller
      */
     public function edit($id)
     {
-        //
+        //$Individual = Model名::find($id)
+
+        return view('WeightRegistrations.edit', compact('Individual'));
     }
 
     /**
@@ -108,6 +114,8 @@ class WeightRegistrationController extends Controller
     public function update(Request $request, $id)
     {
         //
+
+        return redirect('WeightRegistrations.index');
     }
 
     /**

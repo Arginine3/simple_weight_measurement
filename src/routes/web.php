@@ -31,7 +31,10 @@ Route::group(['prefix' => 'WeightRegistrations'],function(){
     Route::get('index', 'WeightRegistrationController@index')->name('WeightRegistrations.index');
     Route::get('create', 'WeightRegistrationController@create')->name('WeightRegistrations.create');
     Route::get('confirm', 'WeightRegistrationController@confirm')->name('WeightRegistrations.confirm');
-    Route::post('store', 'WeightRegistrationController@store')->name('WeightRegistrations.store');
+    Route::post('store', 'Weight RegistrationController@store')->name('WeightRegistrations.store');
+    Route::get('show/{id}', 'Weight RegistrationController@show')->name('WeightRegistrations.show');
+    Route::get('edit/{id}', 'Weight RegistrationController@edit')->name('WeightRegistrations.edit');
+    Route::post('update/{id}', 'Weight RegistrationController@update')->name('WeightRegistrations.update');
 });
 
 Auth::routes();
