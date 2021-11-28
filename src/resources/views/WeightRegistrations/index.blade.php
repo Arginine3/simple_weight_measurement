@@ -14,7 +14,7 @@
                         </div>
                     @endif -->
                     <a href="{{ route('WeightRegistrations.create')}}">新規登録</a><br>
-                    indexです
+                    Home画面が表示される予定
                 </div>
             </div>
         </div>
