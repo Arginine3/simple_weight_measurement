@@ -13,7 +13,7 @@
                             {{ session('status') }}
                         </div>
                     @endif -->
-                    <form action="{{route('WeightRegistrations.store')}}" method="post">
+                    <form action="{{route('WeightRegistrations.post')}}" method="post">
                         @csrf
                         氏名
                         <input name="clint_name" type="text"><br>

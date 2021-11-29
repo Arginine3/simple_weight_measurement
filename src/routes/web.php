@@ -30,11 +30,12 @@ Route::get('tests/test', 'TestController@index');
 Route::group(['prefix' => 'WeightRegistrations'],function(){
     Route::get('index', 'WeightRegistrationController@index')->name('WeightRegistrations.index');
     Route::get('create', 'WeightRegistrationController@create')->name('WeightRegistrations.create');
+    Route::post('post', 'WeightRegistrationController@post')->name('WeightRegistrations.post');
     Route::get('confirm', 'WeightRegistrationController@confirm')->name('WeightRegistrations.confirm');
-    Route::post('store', 'Weight RegistrationController@store')->name('WeightRegistrations.store');
-    Route::get('show/{id}', 'Weight RegistrationController@show')->name('WeightRegistrations.show');
-    Route::get('edit/{id}', 'Weight RegistrationController@edit')->name('WeightRegistrations.edit');
-    Route::post('update/{id}', 'Weight RegistrationController@update')->name('WeightRegistrations.update');
+    Route::post('store', 'WeightRegistrationController@store')->name('WeightRegistrations.store');
+    Route::get('show/{id}', 'WeightRegistrationController@show')->name('WeightRegistrations.show');
+    Route::get('edit/{id}', 'WeightRegistrationController@edit')->name('WeightRegistrations.edit');
+    Route::post('update/{id}', 'WeightRegistrationController@update')->name('WeightRegistrations.update');
 });
 
 Auth::routes();
