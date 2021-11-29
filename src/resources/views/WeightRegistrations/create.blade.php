@@ -17,8 +17,8 @@
                         @csrf
                         氏名
                         <input name="clint_name" type="text"><br>
-                        年齢
-                        <input name="birth_date" type="text"><br>
+                        生年月日
+                        <input name="birth_date" type="date"><br>
                         性別
                         <input name="sex" type="radio" value="0">男性</input>
                         <input name="sex" type="radio" value="1">女性</input><br>
