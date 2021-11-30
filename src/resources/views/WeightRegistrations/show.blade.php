@@ -3,27 +3,24 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="card">
-                <div class="card-header">show.blade.php</div>
+                <div class="">show.blade.php</div>
 
-                <div class="card-body">
+                <div class="">
                     <!-- @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
                         </div>
                     @endif -->
-                    <!-- データの引き継ぎ{{$Individual->clint_name}} -->
-
-                    {{ $Individual-> clint_name }}
-                    {{ $Individual-> weight }}
-                    {{ $Individual-> height }}
-
-                    <form action="{{route('WeightRegistrations.edit', ['id' => $Individual->id ])}}" method="GET">
+                    <form action="{{route('WeightRegistrations.edit', ['id' => $WeightRegistration->id])}}" method="GET">
                         @csrf
-
+                        {{$WeightRegistration->clint_name }}<br>
+                        {{$WeightRegistration->weight }}<br>
+                        {{$WeightRegistration->height }}<br>
+                        {{$sex }}<br>
                         <button class="btn btn-warning">戻る</button>
-                        <input class="btn btn-primary" type="submit" value="編集画面へ" >
+                        <input class="btn btn-primary" type="submit" value="変更する" >
                     </form>
                 </div>
             </div>

@@ -110,9 +110,16 @@ class WeightRegistrationController extends Controller
      */
     public function show($id)
     {
-        //$Individual = Model名::find($id)
+        $WeightRegistration = WeightRegistration::find($id);
 
-        return view('WeightRegistrations.show', compact('Individual'));
+        if($WeightRegistration->sex === 0){
+            $sex = '男性';
+        }
+        if($WeightRegistration->sex === 1){
+            $sex = '女性';
+        }
+
+        return view('WeightRegistrations.show', compact('WeightRegistration', 'sex'));
     }
 
     /**
@@ -123,9 +130,9 @@ class WeightRegistrationController extends Controller
      */
     public function edit($id)
     {
-        //$Individual = Model名::find($id)
-
-        return view('WeightRegistrations.edit', compact('Individual'));
+        $WeightRegistration = WeightRegistration::find($id);
+        
+        return view('WeightRegistrations.edit', compact('WeightRegistration') );
     }
 
     /**
