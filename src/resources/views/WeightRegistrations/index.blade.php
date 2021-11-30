@@ -30,6 +30,7 @@
                                     <th>{{$WeightRegistration->id }}</th>
                                     <td>{{$WeightRegistration->clint_name}}</td>
                                     <td>{{$WeightRegistration->measurement_date}}</td>
+                                    <td><a href="{{route('WeightRegistrations.show', ['id' => $WeightRegistration->id])}}">詳細を見る</a></td>
                                 </tr>
                             @endforeach
                         </tbody>
