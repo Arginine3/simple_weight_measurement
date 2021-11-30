@@ -16,14 +16,14 @@
                     create.bladeのデータを引き継いで表示する<br>
                     <form method="post" action="{{route('WeightRegistrations.store')}}">
                     @csrf
-                      <div>{{ $input["clint_name"] }}</div>
-                      <div>{{ $input['birth_date'] }}</div>
-                      <div>{{ $input['sex'] }}</div>
-                      <div>{{ $input['height'] }}</div>
-                      <div>{{ $input['weight'] }}</div>
-                      <div>{{ $input['measurement_date'] }}</div>
-                      <input class="btn btn-warning" name="back" type="submit" value="戻る" />
-                      <input class="btn btn-primary" type="submit" value="送信" />
+                        <div>{{ $input["clint_name"] }}</div>
+                        <div>{{ $input['birth_date'] }}</div>
+                        <div>{{ $input['sex'] }}</div>
+                        <div>{{ $input['height'] }}</div>
+                        <div>{{ $input['weight'] }}</div>
+                        <div>{{ $input['measurement_date'] }}</div>
+                        <input class="btn btn-warning" name="back" type="submit" value="戻る" />
+                        <input class="btn btn-primary" type="submit" value="送信" />
                     </form>
                 </div>
             </div>

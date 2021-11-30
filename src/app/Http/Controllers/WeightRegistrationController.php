@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 //Modelからデータを取ってくるのに今後必要になると思う
 use App\Models\WeightRegistration;
 
+//DBのファザード(クエリビルダ)が使えるようになる
+use Illuminate\support\Facades\DB;
+
 class WeightRegistrationController extends Controller
 {
     /**
@@ -16,8 +19,13 @@ class WeightRegistrationController extends Controller
      */
     public function index()
     {
-        //
-        return view('WeightRegistrations.index');
+        //クエリビルダ
+        $WeightRegistrations = DB::table('weight_registrations')
+        ->select('id','clint_name', 'measurement_date')
+        ->get();
+        //dd($WeightRegistrations);
+
+        return view('WeightRegistrations.index',compact('WeightRegistrations'));
     }
 
     /**
