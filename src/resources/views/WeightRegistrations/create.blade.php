@@ -20,8 +20,8 @@
                         生年月日
                         <input name="birth_date" type="date"><br>
                         性別
-                        <input name="sex" type="radio" value="0">男性</input>
-                        <input name="sex" type="radio" value="1">女性</input><br>
+                        <input name="sex" type="radio" value="0">男性
+                        <input name="sex" type="radio" value="1">女性<br>
                         身長
                         <input name="height" type="text"><br>
                         体重
