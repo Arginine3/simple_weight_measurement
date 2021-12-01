@@ -10,6 +10,8 @@ use App\Models\WeightRegistration;
 //DBのファザード(クエリビルダ)が使えるようになる
 use Illuminate\support\Facades\DB;
 
+use App\Services\CheckFormData;
+
 class WeightRegistrationController extends Controller
 {
     /**
@@ -68,21 +70,6 @@ class WeightRegistrationController extends Controller
 		return view('WeightRegistrations.confirm', ['input' => $input]);
 	}
 
-    public function send(Request $request){
-		//セッションから値を取り出す
-		$input = $request->session()->get('form_input');
-
-		//セッションに値が無い時はフォームに戻る
-		// if(!$input){
-		// 	return redirect()->action('SampleFormController@show');
-		// }
-
-		//セッションを空にする
-		$request->session()->forget('form_input');
-
-		return redirect()->action('WeightRegistrations@index');
-	}
-
     /**
      * Store a newly created resource in storage.
      *
@@ -97,7 +84,7 @@ class WeightRegistrationController extends Controller
         //セッションを空にする
 		$request->session()->forget('form_input');
 
-        //データを保持して確認画面(confirm.php)に画面遷移させる
+        //データを保存してindex.blade.phpにリダイレクト
         $input->save();
         return redirect()->action('WeightRegistrationController@index');
     }
@@ -112,12 +99,7 @@ class WeightRegistrationController extends Controller
     {
         $WeightRegistration = WeightRegistration::find($id);
 
-        if($WeightRegistration->sex === 0){
-            $sex = '男性';
-        }
-        if($WeightRegistration->sex === 1){
-            $sex = '女性';
-        }
+        $sex = CheckFormData::checkSex($WeightRegistration);
 
         return view('WeightRegistrations.show', compact('WeightRegistration', 'sex'));
     }
@@ -131,7 +113,7 @@ class WeightRegistrationController extends Controller
     public function edit($id)
     {
         $WeightRegistration = WeightRegistration::find($id);
-        
+
         return view('WeightRegistrations.edit', compact('WeightRegistration') );
     }
 
@@ -144,9 +126,19 @@ class WeightRegistrationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //$id を引数に取るので新しくインスタん化(new)するのではなく、すでにあるデータを持ってくる
+        $input = WeightRegistration::find($id);
 
-        return redirect('WeightRegistrations.index');
+        $input->clint_name = $request->input('clint_name');
+        $input->birth_date = $request->input('birth_date');
+        $input->sex = $request->input('sex');
+        $input->height = $request->input('height');
+        $input->weight = $request->input('weight');
+        $input->measurement_date = $request->input('measurement_date');
+
+        $input->save();
+
+        return redirect()->action('WeightRegistrationController@index');
     }
 
     /**
@@ -158,5 +150,9 @@ class WeightRegistrationController extends Controller
     public function destroy($id)
     {
         //
+        $input = WeightRegistration::find($id);
+        $input->delete();
+
+        return redirect()->action('WeightRegistrationController@index');
     }
 }

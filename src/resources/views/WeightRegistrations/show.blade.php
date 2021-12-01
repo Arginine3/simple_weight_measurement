@@ -16,10 +16,12 @@
                     <form action="{{route('WeightRegistrations.edit', ['id' => $WeightRegistration->id])}}" method="GET">
                         @csrf
                         {{$WeightRegistration->clint_name }}<br>
+                        {{$WeightRegistration->birth_date }}<br>
+                        {{$sex }}<br>
                         {{$WeightRegistration->weight }}<br>
                         {{$WeightRegistration->height }}<br>
-                        {{$sex }}<br>
-                        <button class="btn btn-warning">戻る</button>
+                        {{$WeightRegistration->measurement_date }}<br>
+                        <button type="button" onclick="history.back()" class="btn btn-warning">戻る</button>
                         <input class="btn btn-primary" type="submit" value="変更する" >
                     </form>
                 </div>

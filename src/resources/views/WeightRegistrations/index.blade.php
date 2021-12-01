@@ -31,6 +31,11 @@
                                     <td>{{$WeightRegistration->clint_name}}</td>
                                     <td>{{$WeightRegistration->measurement_date}}</td>
                                     <td><a href="{{route('WeightRegistrations.show', ['id' => $WeightRegistration->id])}}">詳細を見る</a></td>
+                                    <td><form method="POST" action="{{route('WeightRegistrations.destroy', ['id' => $WeightRegistration->id])}}" id="delete_{{$WeightRegistration->id}}">
+                                            @csrf
+                                            <a href="#" style="color: red;" data-id="{{$WeightRegistration->id}}" onclick="deletePost(this);">削除する</a>
+                                        </form>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -40,4 +45,15 @@
         </div>
     </div>
 </div>
+
+<script>
+    function deletePost(e){
+        'use strict';
+        if(confirm('本当に削除してよろしいですか??')){
+            document.getElementById('delete_' + e.dataset.id).submit();
+        }
+    }
+</script>
+
 @endsection
+
