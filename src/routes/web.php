@@ -36,6 +36,7 @@ Route::group(['prefix' => 'WeightRegistrations'],function(){
     Route::get('show/{id}', 'WeightRegistrationController@show')->name('WeightRegistrations.show');
     Route::get('edit/{id}', 'WeightRegistrationController@edit')->name('WeightRegistrations.edit');
     Route::post('update/{id}', 'WeightRegistrationController@update')->name('WeightRegistrations.update');
+    Route::post('destroy/{id}', 'WeightRegistrationController@destroy')->name('WeightRegistrations.destroy');
 });
 
 Auth::routes();

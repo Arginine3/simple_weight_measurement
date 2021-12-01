@@ -13,7 +13,7 @@
                             {{ session('status') }}
                         </div>
                     @endif -->
-                    create.bladeのデータを引き継いで表示する<br>
+                    こちらの内容で登録します。よろしいですか??<br>
                     <form method="post" action="{{route('WeightRegistrations.store')}}">
                     @csrf
                         <div>{{ $input["clint_name"] }}</div>
@@ -23,7 +23,7 @@
                         <div>{{ $input['weight'] }}</div>
                         <div>{{ $input['measurement_date'] }}</div>
                         <input class="btn btn-warning" name="back" type="submit" value="戻る" />
-                        <input class="btn btn-primary" type="submit" value="送信" />
+                        <input class="btn btn-primary" type="submit" value="登録" />
                     </form>
                 </div>
             </div>
