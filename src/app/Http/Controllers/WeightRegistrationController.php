@@ -84,9 +84,15 @@ class WeightRegistrationController extends Controller
         //セッションを空にする
 		$request->session()->forget('form_input');
 
+        if($request->get('back')){
+            return redirect()->action('WeightRegistrationController@create')->withInput();
+        }else{
         //データを保存してindex.blade.phpにリダイレクト
         $input->save();
         return redirect()->action('WeightRegistrationController@index');
+        }
+
+
     }
 
     /**

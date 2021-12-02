@@ -22,8 +22,14 @@
                         <div>{{ $input['height'] }}</div>
                         <div>{{ $input['weight'] }}</div>
                         <div>{{ $input['measurement_date'] }}</div>
-                        <input class="btn btn-warning" name="back" type="submit" value="戻る" />
-                        <input class="btn btn-primary" type="submit" value="登録" />
+                        <input name="clint_name" type="hidden" value="{{ $input["clint_name"] }}">
+                        <input name="birth_date" type="hidden" value="{{ $input["birth_date"] }}">
+                        <input name="sex" type="hidden" value="{{ $input["sex"] }}">
+                        <input name="height" type="hidden" value="{{ $input["height"] }}">
+                        <input name="weight" type="hidden" value="{{ $input["weight"] }}">
+                        <input name="measurement_date" type="hidden" value="{{ $input["measurement_date"] }}">
+                        <button class="btn btn-warning" name="back" type="submit" value="true">戻る</button>
+                        <button class="btn btn-primary" name="" type="submit" value="false">登録</button>
                     </form>
                 </div>
             </div>
