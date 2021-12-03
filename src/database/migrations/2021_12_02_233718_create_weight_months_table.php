@@ -15,7 +15,16 @@ class CreateWeightMonthsTable extends Migration
     {
         Schema::create('weight_months', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('client_id');
+            $table->string('year_month_date', 20)->nullable();
+            $table->decimal('weight', 5, 1)->default(0);
             $table->timestamps();
+
+            //client_idに外部キー制約をつける
+            $table->foreign('client_id')
+            ->references('id')
+            ->on('personal_infos')
+            ->onDelete('cascade');
         });
     }
 
