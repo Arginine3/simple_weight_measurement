@@ -27,7 +27,7 @@
                         体重
                         <input name="weight" type="text" value="{{old('weight')}}"><br>
                         測定年月
-                        <input name="measurement_date" type="month" value="{{old('measurement_date')}}"><br>
+                        <input name="year_month_date" type="month" value="{{old('year_month_date')}}"><br>
                         <input class="btn btn-primary" type="submit" value="確認画面へ" >
                     </form>
                 </div>

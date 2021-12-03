@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 //Modelからデータを取ってくるのに今後必要になると思う
-use App\Models\WeightRegistration;
+use App\Models\PersonalInfo;
+use App\Models\WeightMonth;
 
 //DBのファザード(クエリビルダ)が使えるようになる
 use Illuminate\support\Facades\DB;
@@ -22,12 +23,12 @@ class WeightRegistrationController extends Controller
     public function index()
     {
         //クエリビルダ
-        $WeightRegistrations = DB::table('weight_registrations')
-        ->select('id','clint_name', 'measurement_date')
+        $personal_infos = DB::table('personal_infos')
+        ->select('id','clint_name', 'sex')
         ->get();
-        //dd($WeightRegistrations);
+        //dd($personal_infos);
 
-        return view('WeightRegistrations.index',compact('WeightRegistrations'));
+        return view('WeightRegistrations.index',compact('personal_infos'));
     }
 
     /**
@@ -43,14 +44,15 @@ class WeightRegistrationController extends Controller
 
     public function post(Request $request){
 
-        $input = new WeightRegistration;
+        $input = new PersonalInfo;
+        $input = new WeightMonth;
 
         $input->clint_name = $request->input('clint_name');
         $input->birth_date = $request->input('birth_date');
         $input->sex = $request->input('sex');
         $input->height = $request->input('height');
+        $input->year_month_date = $request->input('year_month_date');
         $input->weight = $request->input('weight');
-        $input->measurement_date = $request->input('measurement_date');
 
 		//セッションに書き込む
 		$request->session()->put('form_input', $input);
@@ -103,11 +105,11 @@ class WeightRegistrationController extends Controller
      */
     public function show($id)
     {
-        $WeightRegistration = WeightRegistration::find($id);
+        $PersonalInfo = PersonalInfo::find($id);
 
-        $sex = CheckFormData::checkSex($WeightRegistration);
+        $sex = CheckFormData::checkSex($PersonalInfo);
 
-        return view('WeightRegistrations.show', compact('WeightRegistration', 'sex'));
+        return view('WeightRegistrations.show', compact('PersonalInfo', 'sex'));
     }
 
     /**
@@ -118,9 +120,9 @@ class WeightRegistrationController extends Controller
      */
     public function edit($id)
     {
-        $WeightRegistration = WeightRegistration::find($id);
+        $PersonalInfo = PersonalInfo::find($id);
 
-        return view('WeightRegistrations.edit', compact('WeightRegistration') );
+        return view('WeightRegistrations.edit', compact('PersonalInfo') );
     }
 
     /**
@@ -133,14 +135,15 @@ class WeightRegistrationController extends Controller
     public function update(Request $request, $id)
     {
         //$id を引数に取るので新しくインスタん化(new)するのではなく、すでにあるデータを持ってくる
-        $input = WeightRegistration::find($id);
+        $input = new PersonalInfo;
+        $input = new WeightMonth;
 
         $input->clint_name = $request->input('clint_name');
         $input->birth_date = $request->input('birth_date');
         $input->sex = $request->input('sex');
         $input->height = $request->input('height');
+        $input->year_month_date = $request->input('year_month_date');
         $input->weight = $request->input('weight');
-        $input->measurement_date = $request->input('measurement_date');
 
         $input->save();
 
@@ -155,8 +158,10 @@ class WeightRegistrationController extends Controller
      */
     public function destroy($id)
     {
-        //
-        $input = WeightRegistration::find($id);
+        //考える余地あり(2つあると上書きされて削除できない)
+        $input = PersonalInfo::find($id);
+        //$input = WeightMonth::find($id);
+
         $input->delete();
 
         return redirect()->action('WeightRegistrationController@index');
