@@ -16,9 +16,9 @@ use App\Services\CheckFormData;
 class WeightRegistrationController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * 必要なデータを取得して index.blade.phpを表示
      *
-     * @return \Illuminate\Http\Response
+     * @return
      */
     public function index()
     {
@@ -42,38 +42,52 @@ class WeightRegistrationController extends Controller
         return view('WeightRegistrations.create');
     }
 
+    /**
+     *
+     *
+     *
+     */
     public function post(Request $request){
 
-        $input = new PersonalInfo;
-        $input = new WeightMonth;
+        $personal_infos = new PersonalInfo;
+        $weight_months = new WeightMonth;
 
-        $input->clint_name = $request->input('clint_name');
-        $input->birth_date = $request->input('birth_date');
-        $input->sex = $request->input('sex');
-        $input->height = $request->input('height');
-        $input->year_month_date = $request->input('year_month_date');
-        $input->weight = $request->input('weight');
+        $personal_infos->clint_name = $request->input('clint_name');
+        $personal_infos->birth_date = $request->input('birth_date');
+        $personal_infos->sex = $request->input('sex');
+        $personal_infos->height = $request->input('height');
+        $weight_months->client_id = $request->input('client_id');
+        $weight_months->year_month_date = $request->input('year_month_date');
+        $weight_months->year_month_date = $request->input('year_month_date');
+        $weight_months->weight = $request->input('weight');
 
 		//セッションに書き込む
-		$request->session()->put('form_input', $input);
-        //dd($input);
+		$request->session()->put('personal_infos', $personal_infos);
+		$request->session()->put('weight_months', $weight_months);
+
 
 		return redirect()->action('WeightRegistrationController@confirm');
 	}
 
+    /**
+     *新規登録の入力内容の確認画面の処理
+     *
+     *
+     */
     public function confirm(Request $request){
 		//セッションから値を取り出す
-		$input = $request->session()->get('form_input');
-
+		$personal_infos = $request->session()->get('personal_infos');
+		$weight_months = $request->session()->get('weight_months');
+        //dd($weight_months);
 		//セッションに値が無い時はフォームに戻る
 		// if(!$input){
 		// 	return redirect()->action('WeightRegistrations@index');
 		// }
-		return view('WeightRegistrations.confirm', ['input' => $input]);
+		return view('WeightRegistrations.confirm', ['personal_infos' => $personal_infos, 'weight_months' => $weight_months], );
 	}
 
     /**
-     * Store a newly created resource in storage.
+     * 確認画面からセッションでデータを引き継いでDBにデータの保存
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -81,20 +95,26 @@ class WeightRegistrationController extends Controller
     public function store(Request $request)
     {
         //セッションから値を取り出す
-        $input = $request->session()->get('form_input');
+        $personal_infos = $request->session()->get('personal_infos');
+        $weight_months = $request->session()->get('weight_months');
 
+        //変数の中身を確認
+        dd($personal_infos, $weight_months);
+        
         //セッションを空にする
-		$request->session()->forget('form_input');
+		$request->session()->forget('personal_infos');
+		$request->session()->forget('weight_months');
 
+        //戻るボタンが押下されたときの処理
         if($request->get('back')){
             return redirect()->action('WeightRegistrationController@create')->withInput();
         }else{
         //データを保存してindex.blade.phpにリダイレクト
-        $input->save();
+        //$personal_infos->save();
+        //$weight_months->save();
+
         return redirect()->action('WeightRegistrationController@index');
         }
-
-
     }
 
     /**
@@ -105,11 +125,12 @@ class WeightRegistrationController extends Controller
      */
     public function show($id)
     {
-        $PersonalInfo = PersonalInfo::find($id);
+        $personal_info = PersonalInfo::find($id);
+        $weight_months = WeightMonth::find($id);
 
-        $sex = CheckFormData::checkSex($PersonalInfo);
+        $sex = CheckFormData::checkSex($personal_info);
 
-        return view('WeightRegistrations.show', compact('PersonalInfo', 'sex'));
+        return view('WeightRegistrations.show', compact('personal_info', 'weight_months', 'sex'));
     }
 
     /**
@@ -120,9 +141,9 @@ class WeightRegistrationController extends Controller
      */
     public function edit($id)
     {
-        $PersonalInfo = PersonalInfo::find($id);
+        $personal_info = PersonalInfo::find($id);
 
-        return view('WeightRegistrations.edit', compact('PersonalInfo') );
+        return view('WeightRegistrations.edit', compact('personal_info') );
     }
 
     /**

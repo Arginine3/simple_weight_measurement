@@ -13,14 +13,14 @@
                             {{ session('status') }}
                         </div>
                     @endif -->
-                    <form action="{{route('WeightRegistrations.edit', ['id' => $WeightRegistration->id])}}" method="GET">
+                    <form action="{{route('WeightRegistrations.edit', ['id' => $personal_info->id])}}" method="GET">
                         @csrf
-                        {{$WeightRegistration->clint_name }}<br>
-                        {{$WeightRegistration->birth_date }}<br>
+                        {{$personal_info->clint_name }}<br>
+                        {{$personal_info->birth_date }}<br>
                         {{$sex }}<br>
-                        {{$WeightRegistration->weight }}<br>
-                        {{$WeightRegistration->height }}<br>
-                        {{$WeightRegistration->measurement_date }}<br>
+                        {{$personal_info->height }}<br>
+                        {{$weight_months->year_month_date }}<br>
+                        {{$weight_months->weight }}<br>
                         <button type="button" onclick="history.back()" class="btn btn-warning">戻る</button>
                         <input class="btn btn-primary" type="submit" value="変更する" >
                     </form>
