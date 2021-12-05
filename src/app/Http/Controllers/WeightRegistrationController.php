@@ -99,19 +99,22 @@ class WeightRegistrationController extends Controller
         $weight_months = $request->session()->get('weight_months');
 
         //変数の中身を確認
+        //dd($personal_infos, $weight_months);
         dd($personal_infos, $weight_months);
-        
+
         //セッションを空にする
 		$request->session()->forget('personal_infos');
 		$request->session()->forget('weight_months');
+
 
         //戻るボタンが押下されたときの処理
         if($request->get('back')){
             return redirect()->action('WeightRegistrationController@create')->withInput();
         }else{
         //データを保存してindex.blade.phpにリダイレクト
-        //$personal_infos->save();
-        //$weight_months->save();
+        $personal_infos->save();
+        $weight_months->save();
+
 
         return redirect()->action('WeightRegistrationController@index');
         }
