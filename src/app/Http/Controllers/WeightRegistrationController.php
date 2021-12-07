@@ -38,7 +38,7 @@ class WeightRegistrationController extends Controller
      */
     public function create()
     {
-        //
+        //tes
         return view('WeightRegistrations.create');
     }
 
@@ -49,17 +49,22 @@ class WeightRegistrationController extends Controller
      */
     public function post(Request $request){
 
-        $personal_infos = new PersonalInfo;
-        $weight_months = new WeightMonth;
+        $all_datas = PersonalInfo::all();
 
-        $personal_infos->clint_name = $request->input('clint_name');
-        $personal_infos->birth_date = $request->input('birth_date');
-        $personal_infos->sex = $request->input('sex');
-        $personal_infos->height = $request->input('height');
-        $weight_months->client_id = $request->input('client_id');
-        $weight_months->year_month_date = $request->input('year_month_date');
-        $weight_months->year_month_date = $request->input('year_month_date');
-        $weight_months->weight = $request->input('weight');
+        // $personal_infos = new PersonalInfo();
+        // $weight_months = new WeightMonth;
+        // $all_datas = PersonalInfo::with('WeightMonths')->get();
+
+        // $all_datas->id = PersonalInfo::find( $personal_infos->id );
+        // $all_datas->clint_name = $request->input('clint_name');
+        // $all_datas->birth_date = $request->input('birth_date');
+        // $all_datas->sex = $request->input('sex');
+        // $all_datas->height = $request->input('height');
+        // //$all_datas->client_id = $request->input('client_id');
+        // $all_datas->year_month_date = $request->input('year_month_date');
+        // $all_datas->weight = $request->input('weight');
+
+        dd( $all_datas );
 
 		//セッションに書き込む
 		$request->session()->put('personal_infos', $personal_infos);
@@ -78,7 +83,7 @@ class WeightRegistrationController extends Controller
 		//セッションから値を取り出す
 		$personal_infos = $request->session()->get('personal_infos');
 		$weight_months = $request->session()->get('weight_months');
-        //dd($weight_months);
+        dd($weight_months);
 		//セッションに値が無い時はフォームに戻る
 		// if(!$input){
 		// 	return redirect()->action('WeightRegistrations@index');
