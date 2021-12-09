@@ -19,8 +19,6 @@
                         {{$personal_info->birth_date }}<br>
                         {{$sex }}<br>
                         {{$personal_info->height }}<br>
-                        {{$weight_months->year_month_date }}<br>
-                        {{$weight_months->weight }}<br>
                         <button type="button" onclick="history.back()" class="btn btn-warning">戻る</button>
                         <input class="btn btn-primary" type="submit" value="変更する" >
                     </form>

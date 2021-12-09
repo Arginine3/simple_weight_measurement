@@ -27,7 +27,7 @@ class WeightRegistrationController extends Controller
     {
         //クエリビルダ
         $personal_infos = DB::table('personal_infos')
-        ->select('id','clint_name', 'sex')
+        ->select('id','clint_name','birth_date', 'sex')
         ->get();
         //dd($personal_infos);
 
@@ -119,9 +119,6 @@ class WeightRegistrationController extends Controller
         if($request->get('back')){
             return redirect()->action('WeightRegistrationController@create')->withInput();
         }else{
-        //データを保存してindex.blade.phpにリダイレクト
-        // $personal_infos->save();
-        // $weight_months->save();
 
         try{
             DB::transaction(function () use($request) {
@@ -135,7 +132,6 @@ class WeightRegistrationController extends Controller
                     'client_id' => $personal_info->id,
                     'year_month_date' => $request->year_month_date,
                     'weight' => $request->weight,
-
                 ]);
             },2);
         }catch(Throwable $e){
@@ -174,8 +170,11 @@ class WeightRegistrationController extends Controller
     public function edit($id)
     {
         $personal_info = PersonalInfo::find($id);
+        $weight_months = WeightMonth::find($id);
 
-        return view('WeightRegistrations.edit', compact('personal_info') );
+        //$sex = CheckFormData::checkSex($personal_info);
+
+        return view('WeightRegistrations.edit', compact('personal_info', 'weight_months'));
     }
 
     /**
@@ -187,20 +186,24 @@ class WeightRegistrationController extends Controller
      */
     public function update(Request $request, $id)
     {
+        //戻るボタンが押下されたときの処理
+        // if($request->get('back')){
+        //     return redirect()->action('WeightRegistrationController@show');
+        // }else{
+
         //$id を引数に取るので新しくインスタん化(new)するのではなく、すでにあるデータを持ってくる
-        $input = new PersonalInfo;
-        $input = new WeightMonth;
+        $personal_info = PersonalInfo::findOrFail($id);
+        //dd($personal_info);
 
-        $input->clint_name = $request->input('clint_name');
-        $input->birth_date = $request->input('birth_date');
-        $input->sex = $request->input('sex');
-        $input->height = $request->input('height');
-        $input->year_month_date = $request->input('year_month_date');
-        $input->weight = $request->input('weight');
+        $personal_info->clint_name = $request->input('clint_name');
+        $personal_info->birth_date = $request->input('birth_date');
+        $personal_info->sex = $request->input('sex');
+        $personal_info->height = $request->input('height');
 
-        $input->save();
+        $personal_info->save();
 
         return redirect()->action('WeightRegistrationController@index');
+        // }
     }
 
     /**
