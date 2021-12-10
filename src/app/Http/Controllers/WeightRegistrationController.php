@@ -222,4 +222,61 @@ class WeightRegistrationController extends Controller
 
         return redirect()->action('WeightRegistrationController@index');
     }
+    /**
+     * 今月の体重登録処理のフォーム画面を表示
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function WeightCreate($id)
+    {
+        $personal_info = PersonalInfo::find($id);
+        $weight_months = WeightMonth::find($id);
+
+        return view('WeightRegistrations.addition', compact('personal_info', 'weight_months'));
+    }
+    /**
+     * ユーザーごとの今月の体重を登録する処理
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function addition(Request $request)
+    {
+        //セッションから値を取り出す(リクエストの値を取得する形に変更)
+        // $personal_infos = $request->session()->get('personal_infos');
+        // $weight_months = $request->session()->get('weight_months');
+
+        //セッションの中身を確認
+        //dd()
+
+        //戻るボタンが押下されたときの処理
+        if($request->get('back')){
+            return redirect()->action('WeightRegistrationController@create')->withInput();
+        }else{
+
+        try{
+            DB::transaction(function () use($request) {
+                $personal_info = PersonalInfo::create([
+                    'clint_name' => $request->clint_name,
+                    'birth_date' => $request->birth_date,
+                    'sex' => $request->sex,
+                    'height' => $request->height,
+                ]);
+                WeightMonth::create([
+                    'client_id' => $personal_info->id,
+                    'year_month_date' => $request->year_month_date,
+                    'weight' => $request->weight,
+                ]);
+            },2);
+        }catch(Throwable $e){
+            //logをはいて、エラーを画面上に出す
+            Log::error($e);
+            throw $e;
+        }
+
+
+        return redirect()->action('WeightRegistrationController@index');
+        }
+    }
 }

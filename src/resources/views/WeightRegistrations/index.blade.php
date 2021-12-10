@@ -13,7 +13,8 @@
                             {{ session('status') }}
                         </div>
                     @endif -->
-                    <a href="{{ route('WeightRegistrations.create')}}">新規登録</a><br>
+                    <a href="{{ route('WeightRegistrations.create')}}">新規登録</a>
+                    <a href="">今月の体重を記録する</a><br>
                     <table class="table">
                         <thead>
                             <tr>
@@ -21,7 +22,8 @@
                                 <th scope="col">氏名</th>
                                 <th scope="col">性別</th>
                                 <th scope="col">生年月日</th>
-                                <th scope="col">client status</th>
+                                <th scope="col">個人情報</th>
+                                <th scope="col">今月の体重</th>
                                 <th scope="col">削除</th>
                             </tr>
                         </thead>
@@ -33,6 +35,7 @@
                                     <td>{{$personal_info->sex}}</td>
                                     <td>{{$personal_info->birth_date}}</td>
                                     <td><a href="{{route('WeightRegistrations.show', ['id' => $personal_info->id])}}">詳細</a></td>
+                                    <td><a href="{{route('WeightRegistrations.WeightCreate', ['id' => $personal_info->id])}}">登録</a></td>
                                     <td><form method="POST" action="{{route('WeightRegistrations.destroy', ['id' => $personal_info->id])}}" id="delete_{{$personal_info->id}}">
                                             @csrf
                                             <a href="#" style="color: red;" data-id="{{$personal_info->id}}" onclick="deletePost(this);">削除する</a>
