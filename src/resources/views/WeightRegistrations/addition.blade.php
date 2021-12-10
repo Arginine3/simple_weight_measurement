@@ -14,12 +14,12 @@
                         </div>
                     @endif -->
 
-                    <form action="" method="POST">
+                    <form action="{{route('WeightRegistrations.addition', ['id' => $personal_info->id])}}" method="POST">
                         @csrf
                         氏名
-                        <span>{{$personal_info->clint_name }}</span><br>
+                        <span>{{$personal_info->clint_name}}</span><br>
                         測定年月
-                        <input name="measurement_date" type="month" value=""><br>
+                        <input name="year_month_date" type="month" value=""><br>
                         体重
                         <input name="weight" type="text" value=""><br>
 
