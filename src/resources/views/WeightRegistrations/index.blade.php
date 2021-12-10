@@ -22,6 +22,7 @@
                                 <th scope="col">氏名</th>
                                 <th scope="col">性別</th>
                                 <th scope="col">生年月日</th>
+                                <th scope="col">グラフをみる</th>
                                 <th scope="col">個人情報</th>
                                 <th scope="col">今月の体重</th>
                                 <th scope="col">削除</th>
@@ -34,6 +35,7 @@
                                     <td>{{$personal_info->clint_name}}</td>
                                     <td>{{$personal_info->sex}}</td>
                                     <td>{{$personal_info->birth_date}}</td>
+                                    <td></td>
                                     <td><a href="{{route('WeightRegistrations.show', ['id' => $personal_info->id])}}">詳細</a></td>
                                     <td><a href="{{route('WeightRegistrations.WeightCreate', ['id' => $personal_info->id])}}">登録</a></td>
                                     <td><form method="POST" action="{{route('WeightRegistrations.destroy', ['id' => $personal_info->id])}}" id="delete_{{$personal_info->id}}">
