@@ -14,7 +14,6 @@
                         </div>
                     @endif -->
                     <a href="{{ route('WeightRegistrations.create')}}">新規登録</a>
-                    <a href="">今月の体重を記録する</a><br>
                     <table class="table">
                         <thead>
                             <tr>
@@ -33,9 +32,9 @@
                                 <tr>
                                     <th>{{$personal_info->id }}</th>
                                     <td>{{$personal_info->clint_name}}</td>
-                                    <td>{{$personal_info->sex}}</td>
+                                    <td>{{$personal_info->sex}}</twd>
                                     <td>{{$personal_info->birth_date}}</td>
-                                    <td></td>
+                                    <td><a href="{{route('WeightRegistrations.graph', ['id' => $personal_info->id])}}">詳細</a></td>
                                     <td><a href="{{route('WeightRegistrations.show', ['id' => $personal_info->id])}}">詳細</a></td>
                                     <td><a href="{{route('WeightRegistrations.WeightCreate', ['id' => $personal_info->id])}}">登録</a></td>
                                     <td><form method="POST" action="{{route('WeightRegistrations.destroy', ['id' => $personal_info->id])}}" id="delete_{{$personal_info->id}}">

@@ -253,4 +253,21 @@ class WeightRegistrationController extends Controller
         return redirect()->action('WeightRegistrationController@index');
 
     }
+    /**
+     * クライアントごとの体重グラフを表示する処理
+     *
+     * index.bladeで[グラフを見るボタン]を謳歌されたときにこのメソッドに飛んできてグラフが表示されるので
+     * ここでグラフを表示する処理を書く
+     *
+     * 
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function graph($id)
+    {
+        $personal_info = PersonalInfo::find($id);
+        $weight_months = WeightMonth::find($id);
+
+        return view('WeightRegistrations.weight_graph', compact('personal_info', 'weight_months'));
+    }
 }
