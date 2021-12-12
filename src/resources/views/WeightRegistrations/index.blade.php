@@ -32,7 +32,7 @@
                                 <tr>
                                     <th>{{$personal_info->id }}</th>
                                     <td>{{$personal_info->clint_name}}</td>
-                                    <td>{{$personal_info->sex}}</twd>
+                                    <td>{{$personal_info->sex}}</td>
                                     <td>{{$personal_info->birth_date}}</td>
                                     <td><a href="{{route('WeightRegistrations.graph', ['id' => $personal_info->id])}}">詳細</a></td>
                                     <td><a href="{{route('WeightRegistrations.show', ['id' => $personal_info->id])}}">詳細</a></td>

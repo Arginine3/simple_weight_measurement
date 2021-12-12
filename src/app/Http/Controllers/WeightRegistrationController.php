@@ -29,8 +29,10 @@ class WeightRegistrationController extends Controller
         $personal_infos = DB::table('personal_infos')
         ->select('id','clint_name','birth_date', 'sex')
         ->get();
+
         //dd($personal_infos);
 
+        //$sex = CheckFormData::checkSex($personal_infos);
         return view('WeightRegistrations.index',compact('personal_infos'));
     }
 
@@ -236,7 +238,7 @@ class WeightRegistrationController extends Controller
         return view('WeightRegistrations.addition', compact('personal_info', 'weight_months'));
     }
     /**
-     * ユーザーごとの今月の体重を登録する処理
+     * ユーザーごとの今月の体重を追加する処理
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -251,23 +253,44 @@ class WeightRegistrationController extends Controller
         ]);
 
         return redirect()->action('WeightRegistrationController@index');
-
     }
+
     /**
-     * クライアントごとの体重グラフを表示する処理
+     * X年Y月の最大を計算する関数
      *
-     * index.bladeで[グラフを見るボタン]を謳歌されたときにこのメソッドに飛んできてグラフが表示されるので
-     * ここでグラフを表示する処理を書く
+     * これはただの関数
      *
-     * 
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
-    public function graph($id)
-    {
-        $personal_info = PersonalInfo::find($id);
-        $weight_months = WeightMonth::find($id);
+    function getWeightLogData($date_key){
+        //変数の初期化
+        $max = 0;
+        //データを条件付きで取得
+            //第一引数にカラム名、第二引数に比較演算子、第三引数に比較する値を指定します。(第2引数までのときは 「=」 となる)
+        $logs = WeightMonth::where("client_id",$date_key)->get();
 
-        return view('WeightRegistrations.weight_graph', compact('personal_info', 'weight_months'));
+        //データの数だけ回す
+        foreach($logs as $log){
+            $weight = $log->weight;
+            $max = max($max, $weight);
+        }
+
+        return [
+            $max,
+        ];
     }
+
+    /**
+     *
+     */
+    function graph($id){
+        //リクエストされたclient_idと同じものを探して weightカラムを摘出する
+        $weight_log = WeightMonth::where("client_id",$id)->pluck('weight');
+        $label = WeightMonth::where("client_id",$id)->pluck('year_month_date');
+        //dd($weight_log, $label);
+        return view("WeightRegistrations.weight_graph",[
+            "label" => $label,
+            "weight_log" => $weight_log,
+        ]);
+    }
+
 }
