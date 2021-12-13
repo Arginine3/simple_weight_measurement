@@ -5,9 +5,9 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="">show.blade.php</div>
+                <div class="card-header">show.blade.php</div>
 
-                <div class="">
+                <div class="card-body">
                     <!-- @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
