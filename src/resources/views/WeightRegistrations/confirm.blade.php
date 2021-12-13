@@ -19,7 +19,10 @@
 
                         <div>{{ $personal_infos["clint_name"] }}</div>
                         <div>{{ $personal_infos['birth_date'] }}</div>
-                        <div>{{ $personal_infos['sex'] }}</div>
+                        <div>@if($personal_infos->sex == 0) 男性
+                            @elseif($personal_infos->sex == 1) 女性
+                            @endif
+                        </div>
                         <div>{{ $personal_infos['height'] }}</div>
                         <div>{{ $weight_months['year_month_date'] }}</div>
                         <div>{{ $weight_months['weight'] }}</div>
@@ -29,7 +32,6 @@
                         <input name="birth_date" type="hidden" value="{{ $personal_infos->birth_date }}">
                         <input name="sex" type="hidden" value="{{ $personal_infos->sex }}">
                         <input name="height" type="hidden" value="{{ $personal_infos->height }}">
-                        <!-- <input name="client_id" type="hidden" value=""> -->
                         <input name="year_month_date" type="hidden" value="{{ $weight_months->year_month_date }}">
                         <input name="weight" type="hidden" value="{{ $weight_months->weight }}">
 
