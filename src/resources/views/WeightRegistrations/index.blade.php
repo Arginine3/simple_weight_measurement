@@ -13,7 +13,7 @@
                             {{ session('status') }}
                         </div>
                     @endif -->
-                    <a href="{{ route('WeightRegistrations.create')}}">新規登録</a>
+                    <a class="btn btn-primary original" href="{{ route('WeightRegistrations.create')}}">新規登録</a>
                     <table class="table">
                         <thead>
                             <tr>

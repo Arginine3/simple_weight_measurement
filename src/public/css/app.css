@@ -10962,3 +10962,7 @@ a.text-dark:focus {
   }
 }
 
+.btn-primary.original {
+  margin-bottom: 10px;
+}
+
