@@ -13,6 +13,7 @@ use Illuminate\support\Facades\DB;
 use Illuminate\support\Facades\Log;
 
 use App\Services\CheckFormData;
+use Illuminate\Support\Facades\App;
 use PhpParser\Node\Stmt\TryCatch;
 use Throwable;
 
@@ -30,11 +31,16 @@ class WeightRegistrationController extends Controller
         ->select('id','clint_name','birth_date', 'sex')
         ->get();
 
-        //dd($personal_infos);
-
-        //$sex = CheckFormData::checkSex($personal_infos);
         return view('WeightRegistrations.index',compact('personal_infos'));
     }
+        //dd($personal_infos);
+
+        //sexのすべてのフォールドを取得
+            //foreachで１つ１つ値をifでまわして配列に再代入
+            //compactでindexに送って
+
+            //$personal_info = DB::table('personal_infos')->pluck('sex');
+            //$personal_info = PersonalInfo::find('sex');
 
     /**
      * Show the form for creating a new resource.
@@ -89,8 +95,6 @@ class WeightRegistrationController extends Controller
 		$personal_infos = $request->session()->get('personal_infos');
 		$weight_months = $request->session()->get('weight_months');
 
-        //dd($personal_infos, $weight_months);
-
         //セッションを空にする
 		$request->session()->forget('personal_infos');
 		$request->session()->forget('weight_months');
@@ -99,7 +103,7 @@ class WeightRegistrationController extends Controller
 		// if(!$input){
 		// 	return redirect()->action('WeightRegistrations@index');
 		// }
-		return view('WeightRegistrations.confirm', compact('personal_infos', 'weight_months') );
+		return view('WeightRegistrations.confirm', compact('personal_infos', 'weight_months'));
 	}
 
     /**
