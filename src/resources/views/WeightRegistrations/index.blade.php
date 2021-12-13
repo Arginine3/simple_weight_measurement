@@ -17,7 +17,6 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th scope="col">id</th>
                                 <th scope="col">氏名</th>
                                 <th scope="col">性別</th>
                                 <th scope="col">生年月日</th>
@@ -30,9 +29,11 @@
                         <tbody>
                             @foreach($personal_infos as $personal_info)
                                 <tr>
-                                    <th>{{$personal_info->id }}</th>
                                     <td>{{$personal_info->clint_name}}</td>
-                                    <td>{{$personal_info->sex}}</td>
+                                    <td>@if($personal_info->sex == 0) 男性
+                                        @elseif($personal_info->sex == 1) 女性
+                                        @endif
+                                    </td>
                                     <td>{{$personal_info->birth_date}}</td>
                                     <td><a href="{{route('WeightRegistrations.graph', ['id' => $personal_info->id])}}">詳細</a></td>
                                     <td><a href="{{route('WeightRegistrations.show', ['id' => $personal_info->id])}}">詳細</a></td>
