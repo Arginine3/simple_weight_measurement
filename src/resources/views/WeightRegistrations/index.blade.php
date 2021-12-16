@@ -47,6 +47,7 @@
                             @endforeach
                         </tbody>
                     </table>
+                    {{ $personal_infos->links() }}
                 </div>
             </div>
         </div>
