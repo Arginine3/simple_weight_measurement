@@ -8,9 +8,15 @@ use Illuminate\Http\Request;
 use App\Models\PersonalInfo;
 use App\Models\WeightMonth;
 
+//バリデーションを使うため
+use App\Http\Requests\StoreWeightRegistration;
+use App\Http\Requests\UpdateWeightRegistration;
+use App\Http\Requests\AdditionWeightRegistration;
+
 //DBのファザード(クエリビルダ)が使えるようになる
 use Illuminate\support\Facades\DB;
 use Illuminate\support\Facades\Log;
+
 
 use App\Services\CheckFormData;
 use Illuminate\Support\Facades\App;
@@ -29,7 +35,7 @@ class WeightRegistrationController extends Controller
         //クエリビルダ
         $personal_infos = DB::table('personal_infos')
         ->select('id','clint_name','birth_date', 'sex')
-        ->get();
+        ->paginate(20);
 
         return view('WeightRegistrations.index',compact('personal_infos'));
     }
@@ -60,9 +66,7 @@ class WeightRegistrationController extends Controller
      *
      *
      */
-    public function post(Request $request){
-
-        //$all_datas = PersonalInfo::all();
+    public function post(StoreWeightRegistration $request){
 
         $personal_infos = new PersonalInfo();
         $weight_months = new WeightMonth();
@@ -75,7 +79,7 @@ class WeightRegistrationController extends Controller
         $weight_months->year_month_date = $request->input('year_month_date');
         $weight_months->weight = $request->input('weight');
 
-        //dd($personal_infos, $weight_months);
+        //dd($personal_infos);
 
 		//セッションに書き込む
 		$request->session()->put('personal_infos', $personal_infos);
@@ -190,7 +194,7 @@ class WeightRegistrationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateWeightRegistration $request, $id)
     {
         //戻るボタンが押下されたときの処理
         // if($request->get('back')){
@@ -247,7 +251,7 @@ class WeightRegistrationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function addition(Request $request)
+    public function addition(AdditionWeightRegistration $request)
     {
 
         WeightMonth::create([

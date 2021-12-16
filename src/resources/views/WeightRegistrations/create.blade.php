@@ -13,6 +13,17 @@
                             {{ session('status') }}
                         </div>
                     @endif -->
+
+                    @if($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach($errors->all() as $error)
+                                    <li>{{$error}}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
                     <form action="{{route('WeightRegistrations.post')}}" method="post">
                         @csrf
                         氏名
@@ -24,10 +35,10 @@
                         <input name="sex" type="radio" value="1" @if(old('sex') == 1) checked @endif>女性<br>
                         身長
                         <input name="height" type="text" value="{{old('height')}}"><br>
-                        体重
-                        <input name="weight" type="text" value="{{old('weight')}}"><br>
                         測定年月
                         <input name="year_month_date" type="month" value="{{old('year_month_date')}}"><br>
+                        体重
+                        <input name="weight" type="text" value="{{old('weight')}}"><br>
 
                         <input class="btn btn-primary" type="submit" value="確認画面へ" >
                     </form>

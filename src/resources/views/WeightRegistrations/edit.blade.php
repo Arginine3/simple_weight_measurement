@@ -14,6 +14,17 @@
                         </div>
                     @endif -->
 
+                    <!-- バリデーションのエラーメッセージ -->
+                    @if($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach($errors->all() as $error)
+                                    <li>{{$error}}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
                     <form action="{{route('WeightRegistrations.update', ['id' => $personal_info->id])}}" method="POST">
                         @csrf
                         氏名

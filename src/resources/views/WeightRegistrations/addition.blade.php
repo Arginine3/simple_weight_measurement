@@ -14,6 +14,16 @@
                         </div>
                     @endif -->
 
+                    @if($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach($errors->all() as $error)
+                                    <li>{{$error}}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
                     <form action="{{route('WeightRegistrations.addition', ['id' => $personal_info->id])}}" method="POST">
                         @csrf
                         氏名

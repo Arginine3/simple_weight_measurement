@@ -68,7 +68,7 @@ return [
     'numeric'              => ':attributeには数値を指定してください。',
     'present'              => ':attributeには現在時刻を指定してください。',
     'regex'                => '正しい形式の:attributeを指定してください。',
-    'required'             => ':attributeは必須です。',
+    'required'             => '「:attribute」は必ず入力してね！',
     'required_if'          => ':otherが:valueの時:attributeは必須です。',
     'required_unless'      => ':otherが:values以外の時:attributeは必須です。',
     'required_with'        => ':valuesのうちいずれかが指定された時:attributeは必須です。',
@@ -116,6 +116,15 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+    //自由に追加できる
+        'clint_name' => '氏名',
+        'birth_date' => '生年月日',
+        'sex' => '性別',
+        'height' => '身長',
+        'year_month_date' => '測定年月',
+        'weight' => '体重',
+
+    ],
 
 ];

@@ -6,6 +6,12 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">confirm.blade.php</div>
+                
+                @error('clint_name')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{$message}}</strong>
+                    </span>
+                    @enderror
 
                 <div class="card-body">
                     <!-- @if (session('status'))
