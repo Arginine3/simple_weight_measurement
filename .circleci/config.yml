@@ -7,8 +7,9 @@ jobs:
       - checkout
       - run: sudo composer self-update
       - run: composer install -n --prefer-dist --working-dir=./src/
-      - run: cd ./src/
+      - run: cd ./src
       - run: ls
+      - run: pwd
       - run: npm ci
       - run: npm run dev
       - run:
