@@ -10,7 +10,7 @@ jobs:
       - run: cd ./src
       - run: ls
       - run: pwd
-      - run: npm ci
+      - run: npm ci --working-dir=./src/
       - run: npm run dev
       - run:
           name: php test
