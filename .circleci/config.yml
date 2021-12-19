@@ -8,7 +8,7 @@ jobs:
       - run: sudo composer self-update
       - run: composer install -n --prefer-dist
       - run: npm ci
-          working_directory: ./src
+          working_directory: docker-laravel-vue/src
       - run: npm run dev
       - run:
           name: php test
