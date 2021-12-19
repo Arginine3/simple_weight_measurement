@@ -7,11 +7,6 @@ jobs:
       - checkout
       - run: sudo composer self-update
       - run: composer install -n --prefer-dist --working-dir=./src/
-      - run: cd ./src
-      - run: ls
-      - run: pwd
-      - run: npm ci --working-dir=./src/
-      - run: npm run dev
       - run:
           name: php test
           command: vendor/bin/phpunit
