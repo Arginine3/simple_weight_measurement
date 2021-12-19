@@ -9,7 +9,7 @@ jobs:
       - run: composer install -n --prefer-dist --working-dir=./src
       - run:
           command: npm ci
-          working_directory: docker-laravel-vue/src
+          working_directory: ./src/
       - run: npm run dev
       - run:
           name: php test
