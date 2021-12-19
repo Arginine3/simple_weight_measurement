@@ -6,9 +6,10 @@ jobs:
     steps:
       - checkout
       - run: sudo composer self-update
-      - run: ls
       - run: composer install -n --prefer-dist --working-dir=./src/
-      - run: npm ci --working-dir=./src/
+      - run: cd ./src/
+      - run: ls
+      - run: npm ci
       - run: npm run dev
       - run:
           name: php test
