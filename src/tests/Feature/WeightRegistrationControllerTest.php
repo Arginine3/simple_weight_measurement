@@ -14,7 +14,7 @@ class WeightRegistrationControllerTest extends TestCase
     {
         $response = $this->get(route('WeightRegistrations.index'));
 
-        $response->assertStatus(200)
+        $response->assertStatus(500)
             ->assertViewIs('WeightRegistrations.index');
     }
 }
