@@ -9,4 +9,4 @@ jobs:
       - run: composer install -n --prefer-dist --working-dir=./src/
       - run:
           name: php test
-          command: vendor/bin/phpunit
+          command: vendor/bin/phpunit --working-dir=./src/
