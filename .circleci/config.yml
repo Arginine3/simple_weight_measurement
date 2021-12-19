@@ -6,7 +6,7 @@ jobs:
     steps:
       - checkout
       - run: sudo composer self-update
-      - run: composer install -n --prefer-dist
+      - run: composer install -n --prefer-dist --working-dir=./src
       - run:
           command: npm ci
           working_directory: docker-laravel-vue/src
