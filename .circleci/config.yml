@@ -10,7 +10,10 @@ jobs:
       - run:
           command: npm ci
           working_directory: ./src/
-      - run: npm run dev
+      - run:
+          command: npm run dev
+          working_directory: ./src/
       - run:
           name: php test
           command: vendor/bin/phpunit
+          working_directory: ./src/
