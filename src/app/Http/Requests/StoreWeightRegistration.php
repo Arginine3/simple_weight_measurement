@@ -29,9 +29,9 @@ class StoreWeightRegistration extends FormRequest
             'clint_name' => 'required|string|max:20',
             'birth_date' => 'required|max:20',
             'sex' => 'required|boolean',
-            'weight' => 'required|numeric|max:8',
+            'weight' => 'required|max:8',
             'year_month_date' => 'required|string|max:20',
-            'height' => 'required|numeric|max:8',
+            'height' => 'required|max:8',
         ];
     }
 }
