@@ -40,5 +40,5 @@ jobs:
           working_directory: ./src
       - run:
           name: php test
-          command: vendor/bin/phpunit
+          command: vendor/bin/phpunit tests/Feature
           working_directory: ./src
