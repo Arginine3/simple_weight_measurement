@@ -10,5 +10,8 @@ jobs:
           command: composer install -n --prefer-dist
           working_directory: ./src
       - run:
+          command: php artisan config:clear
+          working_directory: ./src
+      - run:
           name: php test
           command: src/vendor/bin/phpunit src/tests/Feature
