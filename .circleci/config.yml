@@ -10,6 +10,9 @@ jobs:
           command: composer install -n --prefer-dist
           working_directory: ./src
       - run:
+          command: php artisan config:cache
+          working_directory: ./src
+      - run:
           command: php artisan config:clear
           working_directory: ./src
       - run:
