@@ -8,7 +8,7 @@ use Tests\TestCase;
 
 class WeightRegistrationControllerTest extends TestCase
 {
-    use RefreshDatabase;
+    // use RefreshDatabase;
 
     public function testIndex()
     {
