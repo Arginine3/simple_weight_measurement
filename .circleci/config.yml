@@ -27,7 +27,7 @@ jobs:
       #     command: vendor/bin/phpunit # tests/Feature
       - checkout
       - run:
-          command: sudo composer self-update --1
+          command: sudo composer self-update
           working_directory: ./src
       - run:
           command: composer install -n --prefer-dist
