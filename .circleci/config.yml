@@ -39,6 +39,12 @@ jobs:
           command: npm run dev
           working_directory: ./src
       - run:
+          command: php artisan config:cache
+          working_directory: ./src
+      - run:
+          command: php artisan config:clear
+          working_directory: ./src
+      - run:
           name: php test
           command: vendor/bin/phpunit tests/Feature
           working_directory: ./src
