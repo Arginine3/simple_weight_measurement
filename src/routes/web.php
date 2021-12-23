@@ -13,10 +13,10 @@
 
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
-Route::get('tests/test', 'TestController@index');
+
 
 //最終的にこの書き方にしたい(resource)
 // Route::resource('WeightRegistrations','WeightRegistrationController');
@@ -27,7 +27,7 @@ Route::get('tests/test', 'TestController@index');
 // });
 
 // 認証をはさみたいときは、['prefix' => 'WeightRegistrations', 'middleware' => 'auth']
-Route::group(['prefix' => 'WeightRegistrations'],function(){
+Route::group(['prefix' => 'WeightRegistrations', 'middleware' => 'auth'],function(){
     Route::get('index', 'WeightRegistrationController@index')->name('WeightRegistrations.index');
     Route::get('create', 'WeightRegistrationController@create')->name('WeightRegistrations.create');
     Route::post('post', 'WeightRegistrationController@post')->name('WeightRegistrations.post');
@@ -44,4 +44,5 @@ Route::group(['prefix' => 'WeightRegistrations'],function(){
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/', 'HomeController@index')->name('home');
+Route::get('/home', 'WeightRegistrationController@index')->name('home');
