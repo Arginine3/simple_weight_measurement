@@ -26,27 +26,21 @@ use Throwable;
 class WeightRegistrationController extends Controller
 {
     /**
-     * 必要なデータを取得して index.blade.phpを表示
+     * Show the form for creating a new resource.
      *
      * @return
      */
     public function index()
     {
         //クエリビルダ
-        $personal_infos = DB::table('personal_infos')
-        ->select('id','clint_name','birth_date', 'sex')
-        ->paginate(20);
+        // $personal_infos = DB::table('personal_infos')
+        // ->select('id','clint_name','birth_date', 'sex')
+        // ->paginate(20);
 
+        $personal_infos = PersonalInfo::get(['id','clint_name','birth_date','sex']);
+        //$personal_infos = PersonalInfo::all();
         return view('WeightRegistrations.index',compact('personal_infos'));
     }
-        //dd($personal_infos);
-
-        //sexのすべてのフォールドを取得
-            //foreachで１つ１つ値をifでまわして配列に再代入
-            //compactでindexに送って
-
-            //$personal_info = DB::table('personal_infos')->pluck('sex');
-            //$personal_info = PersonalInfo::find('sex');
 
     /**
      * Show the form for creating a new resource.
