@@ -27,7 +27,7 @@ class AdditionWeightRegistration extends FormRequest
         return [
             //
             'year_month_date' => 'required|string|max:20',
-            'weight' => 'required|numeric|max:8',
+            'weight' => 'required|string|max:8',
         ];
     }
 }
