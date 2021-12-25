@@ -13,20 +13,13 @@
 
 
 Route::get('/', function () {
-    return view('auth.login');
+    return view('welcome');
 });
 
+Auth::routes();
 
+Route::get('/home', 'HomeController@index')->name('home');
 
-//最終的にこの書き方にしたい(resource)
-// Route::resource('WeightRegistrations','WeightRegistrationController');
-
-// Route::group(['prefix' => 'WeightRegistrations'],function(){
-//     Route::get('confirm', 'WeightRegistrationController@confirm')->name('WeightRegistrations.confirm');
-//     Route::post('send', 'WeightRegistrationController@send')->name('WeightRegistrations.send');
-// });
-
-// 認証をはさみたいときは、['prefix' => 'WeightRegistrations', 'middleware' => 'auth']
 Route::group(['prefix' => 'WeightRegistrations', 'middleware' => 'auth'],function(){
     Route::get('index', 'WeightRegistrationController@index')->name('WeightRegistrations.index');
     Route::get('create', 'WeightRegistrationController@create')->name('WeightRegistrations.create');
@@ -42,7 +35,4 @@ Route::group(['prefix' => 'WeightRegistrations', 'middleware' => 'auth'],functio
     Route::get('graph/{id}', 'WeightRegistrationController@graph')->name('WeightRegistrations.graph');
 });
 
-Auth::routes();
 
-// Route::get('/', 'HomeController@index')->name('home');
-Route::get('/home', 'WeightRegistrationController@index')->name('home');

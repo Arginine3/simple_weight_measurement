@@ -14,7 +14,8 @@
                         </div>
                     @endif
 
-                    ログアウトしました！
+                    You are logged in! =>
+                    <a href="./WeightRegistrations/index">一覧画面へ</a>
                 </div>
             </div>
         </div>
