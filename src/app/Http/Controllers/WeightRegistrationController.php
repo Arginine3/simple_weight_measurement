@@ -14,7 +14,7 @@ use App\Http\Requests\UpdateWeightRegistration;
 use App\Http\Requests\AdditionWeightRegistration;
 
 //DBのファザード(クエリビルダ)が使えるようになる
-//use Illuminate\support\Facades\DB;
+use Illuminate\support\Facades\DB;
 use Illuminate\support\Facades\Log;
 
 
@@ -110,44 +110,44 @@ class WeightRegistrationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    // public function store(Request $request)
-    // {
-    //     //セッションから値を取り出す(リクエストの値を取得する形に変更)
-    //     // $personal_infos = $request->session()->get('personal_infos');
-    //     // $weight_months = $request->session()->get('weight_months');
+    public function store(Request $request)
+    {
+        //セッションから値を取り出す(リクエストの値を取得する形に変更)
+        // $personal_infos = $request->session()->get('personal_infos');
+        // $weight_months = $request->session()->get('weight_months');
 
-    //     //セッションの中身を確認
-    //     //dd()
+        //セッションの中身を確認
+        //dd()
 
-    //     //戻るボタンが押下されたときの処理
-    //     if($request->get('back')){
-    //         return redirect()->action('WeightRegistrationController@create')->withInput();
-    //     }else{
+        //戻るボタンが押下されたときの処理
+        if($request->get('back')){
+            return redirect()->action('WeightRegistrationController@create')->withInput();
+        }else{
 
-    //     try{
-    //         DB::transaction(function () use($request) {
-    //             $personal_info = PersonalInfo::create([
-    //                 'clint_name' => $request->clint_name,
-    //                 'birth_date' => $request->birth_date,
-    //                 'sex' => $request->sex,
-    //                 'height' => $request->height,
-    //             ]);
-    //             WeightMonth::create([
-    //                 'client_id' => $personal_info->id,
-    //                 'year_month_date' => $request->year_month_date,
-    //                 'weight' => $request->weight,
-    //             ]);
-    //         },2);
-    //     }catch(Throwable $e){
-    //         //logをはいて、エラーを画面上に出す
-    //         Log::error($e);
-    //         throw $e;
-    //     }
+        try{
+            DB::transaction(function () use($request) {
+                $personal_info = PersonalInfo::create([
+                    'clint_name' => $request->clint_name,
+                    'birth_date' => $request->birth_date,
+                    'sex' => $request->sex,
+                    'height' => $request->height,
+                ]);
+                WeightMonth::create([
+                    'client_id' => $personal_info->id,
+                    'year_month_date' => $request->year_month_date,
+                    'weight' => $request->weight,
+                ]);
+            },2);
+        }catch(Throwable $e){
+            //logをはいて、エラーを画面上に出す
+            Log::error($e);
+            throw $e;
+        }
 
 
-    //     return redirect()->action('WeightRegistrationController@index');
-    //     }
-    // }
+        return redirect()->action('WeightRegistrationController@index');
+        }
+    }
 
     /**
      * Display the specified resource.
