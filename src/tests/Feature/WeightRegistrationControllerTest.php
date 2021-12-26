@@ -25,11 +25,11 @@ class WeightRegistrationControllerTest extends TestCase
             ->assertViewIs('WeightRegistrations.index');
     }
 
-    // public function testIndex()
-    // {
-    //     $response = $this->get(route('WeightRegistrations.create'));
+    public function testCrete()
+    {
+        $response = $this->get(route('WeightRegistrations.create'));
 
-    //     $response->assertStatus(200)
-    //         ->assertViewIs('WeightRegistrations.create');
-    // }
+        $response->assertStatus(200)
+            ->assertViewIs('WeightRegistrations.create');
+    }
 }
