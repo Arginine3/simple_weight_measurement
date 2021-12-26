@@ -20,7 +20,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::group(['prefix' => 'WeightRegistrations', 'middleware' => 'auth'],function(){
+Route::group(['prefix' => 'WeightRegistrations'],function(){
     Route::get('index', 'WeightRegistrationController@index')->name('WeightRegistrations.index');
     Route::get('create', 'WeightRegistrationController@create')->name('WeightRegistrations.create');
     Route::post('post', 'WeightRegistrationController@post')->name('WeightRegistrations.post');
