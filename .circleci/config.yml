@@ -22,7 +22,7 @@ jobs:
       - run:
           name: php test
           working_directory: ./src
-          command: src/vendor/bin/phpunit src/tests/Feature
+          command: vendor/bin/phpunit src/tests/Feature
           #command: vendor/bin/phpunit # tests/Feature
       # - checkout
       # - run:
