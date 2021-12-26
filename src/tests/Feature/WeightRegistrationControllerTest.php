@@ -19,7 +19,7 @@ class WeightRegistrationControllerTest extends TestCase
 
     public function testIndex()
     {
-        $response = $this->get(route('WeightRegistrations.index'));
+        $response = $this->withoutMiddleware()->get(route('WeightRegistrations.index'));
 
         $response->assertStatus(200)
             ->assertViewIs('WeightRegistrations.index');
