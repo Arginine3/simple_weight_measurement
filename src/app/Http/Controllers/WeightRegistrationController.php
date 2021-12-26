@@ -14,7 +14,7 @@ use App\Http\Requests\UpdateWeightRegistration;
 use App\Http\Requests\AdditionWeightRegistration;
 
 //DBのファザード(クエリビルダ)が使えるようになる
-use Illuminate\support\Facades\DB;
+use DB;
 use Illuminate\support\Facades\Log;
 
 
