@@ -8,7 +8,7 @@ use Tests\TestCase;
 
 class WeightRegistrationControllerTest extends TestCase
 {
-    //use RefreshDatabase;
+    use RefreshDatabase;
 
     public function testExample()
     {
@@ -19,13 +19,13 @@ class WeightRegistrationControllerTest extends TestCase
 
     public function testIndex()
     {
-        $response = $this->get(route('WeightRegistrations.index'));
+        $response = $this->withoutMiddleware()->get(route('WeightRegistrations.index'));
 
         $response->assertStatus(200)
             ->assertViewIs('WeightRegistrations.index');
     }
 
-    // public function testIndex()
+    // public function testCrete()
     // {
     //     $response = $this->get(route('WeightRegistrations.create'));
 
