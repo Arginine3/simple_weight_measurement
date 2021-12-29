@@ -17,12 +17,14 @@ class AppServiceProvider extends ServiceProvider
     }
 
     /**
-     * Bootstrap any application services.
+     * 開発環境の時のURLがhttp、本番環境の時のURLがhttpsへ
      *
      * @return void
      */
     public function boot()
     {
-        //
+        if (config('app.env') === 'production') {
+            URL::forceScheme('https');
+        }
     }
 }
