@@ -4,6 +4,9 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
+//URLクラスを読み込み
+use Illuminate\Support\Facades\URL;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
