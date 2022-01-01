@@ -10966,3 +10966,33 @@ a.text-dark:focus {
   margin-bottom: 10px;
 }
 
+.original_ul {
+  width: 300px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.original_ul li {
+  list-style: none;
+  margin-top: 8px;
+}
+
+label {
+  margin-right: 10px;
+  width: 80px;
+}
+
+.original_ul2 {
+  padding: 0;
+}
+
+#original_btn {
+  display: flex;
+  margin-top: 20px;
+  justify-content: space-between;
+}
+
+#original_btn .btn-link {
+  border: solid 1px;
+}
+
