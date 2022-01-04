@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">confirm.blade.php</div>
+                <div class="card-header">確認画面</div>
 
                 @error('clint_name')
                     <span class="invalid-feedback" role="alert">
