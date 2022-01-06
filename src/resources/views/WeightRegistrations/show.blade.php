@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">show.blade.php</div>
+                <div class="card-header">個人情報編集画面</div>
 
                 <div class="card-body">
                     <!-- @if (session('status'))
