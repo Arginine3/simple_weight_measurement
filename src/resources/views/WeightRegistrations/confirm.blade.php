@@ -23,7 +23,7 @@
                     @csrf
                     <ul class="original_ul">
                         <li>
-                            <p>こちらの内容で登録します。よろしいですか??</p>
+                            <p>この内容で登録します。よろしいですか??</p>
                         </li>
                         <li>
                             <div> <span>氏名 : </span> {{ $personal_infos["clint_name"] }}</div>
