@@ -38,8 +38,6 @@ class WeightRegistrationController extends Controller
         ->get();
         // ->paginate(20);
 
-        //$personal_infos = PersonalInfo::get(['id','clint_name','birth_date','sex']);
-        //$personal_infos = PersonalInfo::all();
         return view('WeightRegistrations.index',compact('personal_infos'));
     }
 
