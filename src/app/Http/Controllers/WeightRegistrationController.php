@@ -72,8 +72,6 @@ class WeightRegistrationController extends Controller
         $weight_months->year_month_date = $request->input('year_month_date');
         $weight_months->weight = $request->input('weight');
 
-        //dd($personal_infos);
-
 		//セッションに書き込む
 		$request->session()->put('personal_infos', $personal_infos);
 		$request->session()->put('weight_months', $weight_months);
