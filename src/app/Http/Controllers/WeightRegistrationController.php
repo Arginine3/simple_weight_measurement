@@ -113,9 +113,6 @@ class WeightRegistrationController extends Controller
         // $personal_infos = $request->session()->get('personal_infos');
         // $weight_months = $request->session()->get('weight_months');
 
-        //セッションの中身を確認
-        //dd()
-
         //戻るボタンが押下されたときの処理
         if($request->get('back')){
             return redirect()->action('WeightRegistrationController@create')->withInput();
