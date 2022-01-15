@@ -170,8 +170,6 @@ class WeightRegistrationController extends Controller
         $personal_info = PersonalInfo::find($id);
         $weight_months = WeightMonth::find($id);
 
-        //$sex = CheckFormData::checkSex($personal_info);
-
         return view('WeightRegistrations.edit', compact('personal_info', 'weight_months'));
     }
 
