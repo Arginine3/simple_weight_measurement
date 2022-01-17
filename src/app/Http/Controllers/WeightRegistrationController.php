@@ -189,7 +189,6 @@ class WeightRegistrationController extends Controller
 
         //$id を引数に取るので新しくインスタん化(new)するのではなく、すでにあるデータを持ってくる
         $personal_info = PersonalInfo::findOrFail($id);
-        //dd($personal_info);
 
         $personal_info->clint_name = $request->input('clint_name');
         $personal_info->birth_date = $request->input('birth_date');
