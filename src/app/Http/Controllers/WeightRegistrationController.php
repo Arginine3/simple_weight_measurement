@@ -272,9 +272,6 @@ class WeightRegistrationController extends Controller
         ];
     }
 
-    /**
-     *
-     */
     function graph($id){
         //リクエストされたclient_idと同じものを探して weightカラムを摘出する
         $weight_log = WeightMonth::where("client_id",$id)->pluck('weight');
