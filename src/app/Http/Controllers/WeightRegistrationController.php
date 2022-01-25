@@ -54,11 +54,6 @@ class WeightRegistrationController extends Controller
         return view('WeightRegistrations.create', compact('PersonalInfo', 'WeightMonth'));
     }
 
-    /**
-     *
-     *
-     *
-     */
     public function post(StoreWeightRegistration $request){
 
         $personal_infos = new PersonalInfo();
