@@ -77,8 +77,6 @@ class WeightRegistrationController extends Controller
 
     /**
      *新規登録の入力内容の確認画面の処理
-     *
-     *
      */
     public function confirm(Request $request){
 		//セッションから値を取り出す
