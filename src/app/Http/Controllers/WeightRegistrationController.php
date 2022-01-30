@@ -26,8 +26,6 @@ use Throwable;
 class WeightRegistrationController extends Controller
 {
     /**
-     *
-     *
      * @return
      */
     public function index()
