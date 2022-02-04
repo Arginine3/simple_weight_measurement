@@ -167,7 +167,7 @@ class WeightRegistrationController extends Controller
      */
     public function update(UpdateWeightRegistration $request, $id)
     {
-        //戻るボタンが押下されたときの処理
+        //戻るボタンが押下された時の処理
         // if($request->get('back')){
         //     return redirect()->action('WeightRegistrationController@show');
         // }else{
