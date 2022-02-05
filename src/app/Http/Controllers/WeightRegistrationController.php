@@ -170,7 +170,7 @@ class WeightRegistrationController extends Controller
         //戻るボタンが押下された時の処理
         // if($request->get('back')){
         //     return redirect()->action('WeightRegistrationController@show');
-        // }else{
+        // }
 
         //$id を引数に取るので新しくインスタん化(new)するのではなく、すでにあるデータを持ってくる
         $personal_info = PersonalInfo::findOrFail($id);
