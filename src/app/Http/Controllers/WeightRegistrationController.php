@@ -194,9 +194,7 @@ class WeightRegistrationController extends Controller
      */
     public function destroy($id)
     {
-        //考える余地あり(2つあると上書きされて削除できない)
         $input = PersonalInfo::find($id);
-        //$input = WeightMonth::find($id);
 
         $input->delete();
 
