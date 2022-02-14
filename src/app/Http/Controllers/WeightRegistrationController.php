@@ -197,6 +197,7 @@ class WeightRegistrationController extends Controller
 
         return redirect()->action('WeightRegistrationController@index');
     }
+    
     /**
      * 今月の体重登録処理のフォーム画面を表示
      *
