@@ -197,7 +197,7 @@ class WeightRegistrationController extends Controller
 
         return redirect()->action('WeightRegistrationController@index');
     }
-    
+
     /**
      * 今月の体重登録処理のフォーム画面を表示
      *
@@ -232,7 +232,7 @@ class WeightRegistrationController extends Controller
     /**
      * X年Y月の最大を計算する関数
      *
-     * これはただの関数
+     * ただの関数
      */
     function getWeightLogData($date_key){
         //変数の初期化
