@@ -232,7 +232,7 @@ class WeightRegistrationController extends Controller
     /**
      * X年Y月の最大を計算する関数
      *
-     * ただの関数
+     * 関数
      */
     function getWeightLogData($date_key){
         //変数の初期化
