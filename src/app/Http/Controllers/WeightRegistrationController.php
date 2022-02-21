@@ -212,7 +212,7 @@ class WeightRegistrationController extends Controller
         return view('WeightRegistrations.addition', compact('personal_info', 'weight_months'));
     }
     /**
-     * ユーザーごとの今月の体重を追加する処理
+     * ユーザー毎で今月の体重を追加する処理
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
